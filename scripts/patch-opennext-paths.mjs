@@ -16,7 +16,9 @@ const workerRedirectFrom = `            const url = new URL(request.url);
             // Serve images in development.`;
 
 const workerRedirectTo = `            const url = new URL(request.url);
-            if (url.hostname === "www.turnweave.com") {
+            const shouldNormalizeHost = url.hostname === "www.turnweave.com";
+            const shouldUpgradeProtocol = url.protocol !== "https:";
+            if (shouldNormalizeHost || shouldUpgradeProtocol) {
                 url.hostname = "turnweave.com";
                 url.protocol = "https:";
                 return Response.redirect(url, 308);

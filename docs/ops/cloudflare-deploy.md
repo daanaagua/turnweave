@@ -9,12 +9,16 @@
    - `cleo.ns.cloudflare.com`
    - `jillian.ns.cloudflare.com`
 7. Custom domains are already attached to the `turnweave` Worker from the Cloudflare account side.
-8. Verify the public routes after deploy:
+8. `www -> apex` is enforced in the Worker entry path as a `308` redirect to `https://turnweave.com`.
+9. `http -> https` is enforced in two layers:
+   - Cloudflare zone setting `Always Use HTTPS`
+   - Worker-level `308` redirect as a fallback during propagation
+10. Verify the public routes after deploy:
    - `/`
    - `/book-demo`
    - `/waitlist`
    - `/login`
    - `/signup`
    - `/app`
-9. Verify the Workers preview URL:
+11. Verify the Workers preview URL:
    - `https://turnweave.pony17620.workers.dev`
