@@ -60,6 +60,24 @@ const routeLinks = [
   },
 ] as const;
 
+const relatedReads = [
+  {
+    href: "/full-duplex-voice-ai",
+    title: "Full-duplex voice AI",
+    body: "Use this when the reader needs the category decoded before any vendor comparison makes sense.",
+  },
+  {
+    href: "/seeduplex-vs-gpt-4o-voice",
+    title: "Seeduplex vs GPT-4o voice",
+    body: "Use this when the search starts with the OpenAI route and needs product framing instead of benchmark theater.",
+  },
+  {
+    href: "/seeduplex-vs-gemini-live",
+    title: "Seeduplex vs Gemini Live",
+    body: "Use this when the searcher is comparing Seeduplex interest with Google's Live API ecosystem.",
+  },
+] as const;
+
 export default function SeeduplexPage() {
   return (
     <PageShell className="py-10 md:py-14">
@@ -155,9 +173,9 @@ export default function SeeduplexPage() {
 
         <article className="section-shell rounded-[1.5rem] p-6">
           <SectionHeading
-            eyebrow="Source"
-            title="Independent page"
-            description="This page is not affiliated with ByteDance. It exists to explain the term and connect it to real product workflows."
+            eyebrow="References"
+            title="Official and third-party links"
+            description="This page is not affiliated with ByteDance. It cites the official Seed announcement first, then points to one clearly third-party resource that reflects live market interest around the term."
           />
           <div className="mt-6 flex flex-col gap-3">
             <a
@@ -175,7 +193,7 @@ export default function SeeduplexPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-foreground transition hover:text-accent"
             >
-              Market-facing Seeduplex resource
+              Independent Seeduplex site (third-party)
               <ExternalLink className="size-4" />
             </a>
           </div>
@@ -218,6 +236,30 @@ export default function SeeduplexPage() {
               <h2 className="text-lg font-semibold text-foreground">{item.question}</h2>
               <p className="mt-3 text-sm leading-7 text-muted">{item.answer}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <SectionHeading
+          eyebrow="Related reads"
+          title="This page now anchors a wider Seeduplex search cluster."
+          description="These adjacent routes help the site absorb comparison and category traffic without turning the product into a news mirror."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {relatedReads.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="section-shell rounded-[1.5rem] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent/40"
+            >
+              <h2 className="text-xl font-semibold text-foreground">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.body}</p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">
+                Open route
+                <ArrowRight className="size-4" />
+              </span>
+            </Link>
           ))}
         </div>
       </section>

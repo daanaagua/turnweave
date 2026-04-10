@@ -30,5 +30,10 @@ export const docsIndex = {
     { href: "/scenarios/roleplay-training", label: "Roleplay & training" },
     { href: "/pricing", label: "Pricing" },
     { href: "/seeduplex", label: "Seeduplex explainer" },
+    { href: "/full-duplex-voice-ai", label: "Full-duplex voice AI" },
+    { href: "/seeduplex-vs-gpt-4o-voice", label: "Seeduplex vs GPT-4o voice" },
+    { href: "/seeduplex-vs-gemini-live", label: "Seeduplex vs Gemini Live" },
+    { href: "/ai-website-agents", label: "AI website agents" },
+    { href: "/voice-roleplay-training", label: "Voice roleplay training" },
   ],
 } as const;

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { topicPageList } from "@/content/topics";
 import { siteConfig } from "@/lib/site";
 
 const routes = [
@@ -11,6 +12,11 @@ const routes = [
   { path: "/scenarios/roleplay-training", priority: 0.8, changeFrequency: "weekly" as const },
   { path: "/legal/privacy", priority: 0.3, changeFrequency: "monthly" as const },
   { path: "/legal/terms", priority: 0.3, changeFrequency: "monthly" as const },
+  ...topicPageList.map((page) => ({
+    path: `/${page.slug}`,
+    priority: 0.76,
+    changeFrequency: "weekly" as const,
+  })),
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
