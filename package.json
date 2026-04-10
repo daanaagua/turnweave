@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
+    "build:worker": "npm run build && opennextjs-cloudflare build && node scripts/patch-opennext-paths.mjs",
+    "deploy": "npm run build:worker && wrangler deploy",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

@@ -1,11 +1,27 @@
 {
   "name": "turnweave",
+  "account_id": "c74872d377347938e13bb632280e185c",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-04-10",
   "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
   "observability": {
     "enabled": true
   },
+  "kv_namespaces": [
+    {
+      "binding": "APP_CACHE",
+      "id": "563e2d76f8874e9489a6b1efbfe2dc48"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "turnweave-prod",
+      "database_id": "76342c08-334c-4d45-8caa-5cba3f6caa19"
+    }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": ".open-next/assets"
