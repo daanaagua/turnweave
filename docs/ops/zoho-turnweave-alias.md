@@ -19,11 +19,11 @@ Current status on 2026-04-10:
 1. Cloudflare Email Routing is enabled for `turnweave.com`.
 2. Required MX, SPF, and DKIM DNS records were created automatically by Cloudflare.
 3. Destination address `suporte@scanlume.com` was created in Cloudflare as the forward target.
-4. The destination address is still `unverified`, so the forwarding rule cannot be created yet.
-5. The remaining action is to open the Cloudflare verification email in Zoho and confirm the destination address.
+4. The destination address has been verified.
+5. A routing rule now forwards `suporte@turnweave.com` to `suporte@scanlume.com`.
 
-After verification:
+Current forward rule:
 
-1. Create a rule that matches `suporte@turnweave.com`.
-2. Forward mail to `suporte@scanlume.com`.
-3. Update the public support address in the site footer and contact copy if needed.
+1. Match `to = suporte@turnweave.com`
+2. Action `forward -> suporte@scanlume.com`
+3. Keep Zoho alias/mailbox as an optional future cleanup, not a launch blocker.
