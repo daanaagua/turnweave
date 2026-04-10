@@ -9,6 +9,19 @@ export const siteConfig = {
     "Website agents, roleplay training, and a platform-ready shell for voice experiences.",
   url: siteUrl,
   supportEmail: "suporte@turnweave.com",
+  locale: "en_US",
+  keywords: [
+    "voice agents",
+    "website voice agent",
+    "ai voice agent",
+    "voice training software",
+    "roleplay training",
+    "voice experience platform",
+    "conversational ai website",
+  ],
+  social: {
+    x: "@turnweave",
+  },
 } as const;
 
 export const marketingNav = [

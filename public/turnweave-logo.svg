@@ -1,0 +1,42 @@
+<svg width="262" height="64" viewBox="0 0 262 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="turnweave-logo-title turnweave-logo-desc">
+  <title id="turnweave-logo-title">Turnweave logo</title>
+  <desc id="turnweave-logo-desc">A woven voice mark beside the Turnweave wordmark.</desc>
+  <defs>
+    <linearGradient id="turnweave-panel" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18202B"/>
+      <stop offset="1" stop-color="#0C1118"/>
+    </linearGradient>
+    <linearGradient id="turnweave-cool" x1="18" y1="18" x2="46" y2="47" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9FD7CB"/>
+      <stop offset="1" stop-color="#63A597"/>
+    </linearGradient>
+    <linearGradient id="turnweave-warm" x1="46" y1="18" x2="18" y2="47" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2CFB2"/>
+      <stop offset="1" stop-color="#BEA37B"/>
+    </linearGradient>
+    <linearGradient id="turnweave-voice" x1="32" y1="16" x2="32" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FAFC"/>
+      <stop offset="1" stop-color="#D7E1EA"/>
+    </linearGradient>
+    <filter id="turnweave-glow" x="0" y="0" width="64" height="64" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="3.5" result="effect1_foregroundBlur"/>
+    </filter>
+  </defs>
+  <g>
+    <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#turnweave-panel)"/>
+    <rect x="4.5" y="4.5" width="55" height="55" rx="17.5" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="32" cy="32" r="18" fill="#7FB9AD" fill-opacity="0.08"/>
+    <g filter="url(#turnweave-glow)" opacity="0.6">
+      <path d="M18 21C22.4 15.6 29.1 13.3 35.4 15.3C42.2 17.4 46.2 23.5 46.2 30.2C46.2 36.2 43.1 41.5 37.9 44.2C31.8 47.5 24.3 46.2 19.6 41" stroke="url(#turnweave-warm)" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M46 43C41.6 48.4 34.9 50.7 28.6 48.7C21.8 46.6 17.8 40.5 17.8 33.8C17.8 27.8 20.9 22.5 26.1 19.8C32.2 16.5 39.7 17.8 44.4 23" stroke="url(#turnweave-cool)" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path d="M18 21C22.4 15.6 29.1 13.3 35.4 15.3C42.2 17.4 46.2 23.5 46.2 30.2C46.2 36.2 43.1 41.5 37.9 44.2C31.8 47.5 24.3 46.2 19.6 41" stroke="url(#turnweave-warm)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M46 43C41.6 48.4 34.9 50.7 28.6 48.7C21.8 46.6 17.8 40.5 17.8 33.8C17.8 27.8 20.9 22.5 26.1 19.8C32.2 16.5 39.7 17.8 44.4 23" stroke="url(#turnweave-cool)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="29.25" y="15.5" width="5.5" height="33" rx="2.75" fill="url(#turnweave-voice)"/>
+  </g>
+  <g fill="#EEF3F7">
+    <text x="80" y="37" font-family="Geist, 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="650" letter-spacing="0.08em">TURNWEAVE</text>
+  </g>
+</svg>

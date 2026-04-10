@@ -19,11 +19,16 @@ export const docsIndex = {
       title: "Platform direction",
       body: "See how the current shell leaves room for API, usage, and operational controls without overpromising.",
     },
+    {
+      title: "Model explainers",
+      body: "Follow explainer pages for voice models and category terms that shape how buyers search the market.",
+    },
   ],
   routes: [
     { href: "/product", label: "Product overview" },
     { href: "/scenarios/website-agents", label: "Website agents" },
     { href: "/scenarios/roleplay-training", label: "Roleplay & training" },
     { href: "/pricing", label: "Pricing" },
+    { href: "/seeduplex", label: "Seeduplex explainer" },
   ],
 } as const;

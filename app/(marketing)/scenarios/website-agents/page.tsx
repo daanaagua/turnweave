@@ -2,7 +2,13 @@ import Link from "next/link";
 import { ArrowRight, LaptopMinimal, MessageCircleMore, Target } from "lucide-react";
 import { PageShell } from "@/components/marketing/page-shell";
 import { SectionHeading } from "@/components/marketing/section-heading";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+  buildPageMetadata,
+  buildSoftwareApplicationSchema,
+} from "@/lib/seo";
 import { websiteAgentSections, websiteAgentsScenario } from "@/content/scenarios/website-agents";
 
 export const metadata = buildPageMetadata({
@@ -12,9 +18,36 @@ export const metadata = buildPageMetadata({
   keywords: ["website agents", "lead capture", "voice website", "product discovery"],
 });
 
+const websiteAgentFaqs = [
+  {
+    question: "What is a website agent?",
+    answer:
+      "A website agent is a conversational layer on a public site that helps answer questions, route intent, and guide visitors toward the next useful action.",
+  },
+  {
+    question: "When do website agents fit best?",
+    answer:
+      "They fit best on product pages, help centers, campaign landing pages, and booking flows where visitors want guidance before they commit to a form or call.",
+  },
+] as const;
+
 export default function WebsiteAgentsPage() {
   return (
     <PageShell className="py-10 md:py-14">
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: websiteAgentsScenario.title, path: "/scenarios/website-agents" },
+          ]),
+          buildSoftwareApplicationSchema({
+            name: `${websiteAgentsScenario.title} | Turnweave`,
+            description: websiteAgentsScenario.summary,
+            path: "/scenarios/website-agents",
+          }),
+          buildFaqSchema([...websiteAgentFaqs]),
+        ]}
+      />
       <section className="section-shell rounded-[2rem] px-6 py-10 md:px-10 md:py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
           <div className="max-w-3xl">
@@ -102,6 +135,22 @@ export default function WebsiteAgentsPage() {
             <ArrowRight className="size-4" />
           </Link>
         </article>
+      </section>
+
+      <section className="mt-16">
+        <SectionHeading
+          eyebrow="FAQ"
+          title="The strongest search intent here is practical."
+          description="These are the two questions buyers usually ask before they care about implementation detail."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {websiteAgentFaqs.map((item) => (
+            <article key={item.question} className="section-shell rounded-[1.5rem] p-6">
+              <h2 className="text-lg font-semibold text-foreground">{item.question}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.answer}</p>
+            </article>
+          ))}
+        </div>
       </section>
     </PageShell>
   );

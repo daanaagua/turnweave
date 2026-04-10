@@ -2,14 +2,21 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Layers3, Sparkles } from "lucide-react";
 import { PageShell } from "@/components/marketing/page-shell";
 import { SectionHeading } from "@/components/marketing/section-heading";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+  buildPageMetadata,
+  buildSoftwareApplicationSchema,
+} from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = buildPageMetadata({
-  title: "Pricing",
+  title: "AI Voice Agent Pricing",
   description:
-    "Illustrative Turnweave pricing shells for launch, team use, and platform expansion.",
+    "See Turnweave pricing structure for AI website agents, voice training workflows, and future platform expansion.",
   path: "/pricing",
+  keywords: ["ai voice agent pricing", "voice training pricing", "website agent pricing"],
 });
 
 type PricingPlan = {
@@ -42,9 +49,42 @@ const plans: PricingPlan[] = [
   },
 ];
 
+const pricingFaqs = [
+  {
+    question: "Are these live self-serve plans?",
+    answer:
+      "This page presents the pricing structure and product tiers, while the live billing surface stays intentionally conservative.",
+  },
+  {
+    question: "Which plan fits a team evaluating website agents first?",
+    answer:
+      "Starter is shaped for a narrow launch, while Studio is the better fit for teams that want multiple scenarios and a broader operator surface.",
+  },
+  {
+    question: "Is there room for a larger platform rollout later?",
+    answer:
+      "Yes. The Platform tier is reserved for future API, usage, and workflow expansion without changing the public framing.",
+  },
+] as const;
+
 export default function PricingPage() {
   return (
     <PageShell className="py-10 md:py-14">
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Pricing", path: "/pricing" },
+          ]),
+          buildSoftwareApplicationSchema({
+            name: "Turnweave Pricing",
+            description:
+              "Illustrative pricing tiers for website agents, training scenes, and a future platform surface.",
+            path: "/pricing",
+          }),
+          buildFaqSchema([...pricingFaqs]),
+        ]}
+      />
       <section className="section-shell rounded-[2rem] px-6 py-10 md:px-10 md:py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
           <div className="max-w-3xl">
@@ -132,6 +172,15 @@ export default function PricingPage() {
           title="The page is intentionally cautious."
           description="It supports product discovery without pretending the billing surface is fully activated."
         />
+      </section>
+
+      <section className="mt-10 grid gap-4 md:grid-cols-3">
+        {pricingFaqs.map((item) => (
+          <article key={item.question} className="section-shell rounded-[1.5rem] p-6">
+            <h2 className="text-lg font-semibold text-foreground">{item.question}</h2>
+            <p className="mt-3 text-sm leading-7 text-muted">{item.answer}</p>
+          </article>
+        ))}
       </section>
     </PageShell>
   );

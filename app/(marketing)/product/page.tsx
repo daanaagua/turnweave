@@ -2,13 +2,15 @@ import Link from "next/link";
 import { ArrowRight, MicVocal, MoveRight, Waypoints } from "lucide-react";
 import { PageShell } from "@/components/marketing/page-shell";
 import { SectionHeading } from "@/components/marketing/section-heading";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { buildBreadcrumbSchema, buildPageMetadata, buildSoftwareApplicationSchema } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Product",
+  title: "AI Voice Agent Product",
   description:
-    "Turnweave product overview for website agents, roleplay training, and the future platform shell.",
+    "Explore Turnweave as an AI voice agent product for website guidance, roleplay training, and platform-ready workflow design.",
   path: "/product",
+  keywords: ["ai voice agent product", "website voice agent", "voice workflow platform"],
 });
 
 const layers = [
@@ -35,6 +37,20 @@ const flow = [
 export default function ProductPage() {
   return (
     <PageShell className="py-10 md:py-14">
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Product", path: "/product" },
+          ]),
+          buildSoftwareApplicationSchema({
+            name: "Turnweave Product Shell",
+            description:
+              "A server-rendered product shell for website agents, training scenes, and platform-ready voice workflows.",
+            path: "/product",
+          }),
+        ]}
+      />
       <section className="section-shell rounded-[2rem] px-6 py-10 md:px-10 md:py-12">
         <div className="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-center">
           <div>
@@ -134,6 +150,16 @@ export default function ProductPage() {
               <p className="mt-1 text-sm leading-6 text-muted">Pricing and docs are separate routes, not hidden sections.</p>
             </div>
             <MoveRight className="size-5 text-accent" />
+          </div>
+          <div className="mt-4 rounded-2xl border border-line/70 bg-white/5 px-4 py-4">
+            <p className="text-sm font-medium text-foreground">Model explainer</p>
+            <p className="mt-1 text-sm leading-6 text-muted">
+              Need the category context first? Read the{" "}
+              <Link href="/seeduplex" className="text-foreground transition hover:text-accent">
+                Seeduplex explainer
+              </Link>{" "}
+              to see how model interest maps into product demand.
+            </p>
           </div>
         </article>
       </section>

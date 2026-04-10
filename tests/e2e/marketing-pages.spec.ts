@@ -13,7 +13,7 @@ test("pricing page renders the public plan shell", async ({ page }) => {
   await page.goto("/pricing");
 
   await expect(page.locator("h1")).toContainText("Pricing that stays honest");
-  await expect(page.getByText("Starter")).toBeVisible();
-  await expect(page.getByText("Studio")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Starter", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Studio", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Platform", exact: true })).toBeVisible();
 });

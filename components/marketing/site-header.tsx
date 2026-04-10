@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { marketingNav } from "@/lib/site";
 
@@ -8,9 +9,17 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-4">
           <Link
             href="/"
-            className="text-sm font-semibold uppercase tracking-[0.32em] text-ink"
+            className="inline-flex items-center"
+            aria-label="Turnweave home"
           >
-            Turnweave
+            <Image
+              src="/turnweave-logo.svg"
+              alt="Turnweave"
+              width={262}
+              height={64}
+              priority
+              className="h-7 w-auto md:h-8"
+            />
           </Link>
           <div className="flex items-center gap-3 md:hidden">
             <Link

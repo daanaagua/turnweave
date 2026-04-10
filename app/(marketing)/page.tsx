@@ -1,16 +1,22 @@
 import Link from "next/link";
 import { ArrowRight, MessageSquareText, MicVocal, PanelsTopLeft, Sparkles } from "lucide-react";
 import { PageShell } from "@/components/marketing/page-shell";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/marketing/section-heading";
-import { buildPageMetadata } from "@/lib/seo";
+import {
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+  buildPageMetadata,
+  buildSoftwareApplicationSchema,
+} from "@/lib/seo";
 import { scenarioIndex } from "@/content/scenarios";
 
 export const metadata = buildPageMetadata({
-  title: "Website voice shell",
+  title: "AI Website Agents and Voice Training",
   description:
-    "Turnweave is a premium SSR marketing shell for website agents, roleplay training, and a platform-ready future.",
+    "Turnweave is a premium, server-rendered website for AI website agents, voice training scenes, and platform-ready conversational workflows.",
   path: "/",
-  keywords: ["website agents", "roleplay training", "voice experiences", "SSR marketing"],
+  keywords: ["ai website agents", "voice training", "conversational ai", "full duplex voice ai"],
 });
 
 const pillars = [
@@ -37,9 +43,44 @@ const signals = [
   "A product shell that can grow without rewriting the story",
 ];
 
+const homepageFaqs = [
+  {
+    question: "What is Turnweave?",
+    answer:
+      "Turnweave is a voice-native product shell for website agents, training scenes, and platform-ready workflow surfaces.",
+  },
+  {
+    question: "Who is Turnweave for?",
+    answer:
+      "It is designed for teams that want a polished public site, clear scenario pages, and a structure that can support website guidance or rehearsal workflows.",
+  },
+  {
+    question: "What do website agents help with?",
+    answer:
+      "Website agents help answer visitor questions, guide discovery, route intent, and create a calmer front door for high-intent traffic.",
+  },
+  {
+    question: "What are training scenes?",
+    answer:
+      "Training scenes are repeatable roleplay flows for sales, support, interviews, or language practice that benefit from realistic conversation structure.",
+  },
+] as const;
+
 export default function HomePage() {
   return (
     <div className="pb-20">
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([{ name: "Home", path: "/" }]),
+          buildSoftwareApplicationSchema({
+            name: "Turnweave",
+            description:
+              "Voice-native website agents and training scenes for public-facing product experiences.",
+            path: "/",
+          }),
+          buildFaqSchema([...homepageFaqs]),
+        ]}
+      />
       <PageShell className="pt-10 md:pt-14">
         <section className="section-shell relative overflow-hidden rounded-[2rem] px-6 py-10 md:px-10 md:py-14">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(208,185,150,0.12),transparent_22%),radial-gradient(circle_at_82%_22%,rgba(127,185,173,0.16),transparent_24%)]" />
@@ -222,6 +263,27 @@ export default function HomePage() {
                 Docs
               </Link>
             </div>
+          </div>
+        </section>
+      </PageShell>
+
+      <PageShell className="mt-16">
+        <section className="section-shell rounded-[1.75rem] px-6 py-8 md:px-8 md:py-10">
+          <SectionHeading
+            eyebrow="FAQ"
+            title="The public story should answer the first four questions quickly."
+            description="These answers exist for visitors, search engines, and AI systems that need a direct summary of what the product is and where it fits."
+          />
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {homepageFaqs.map((item) => (
+              <article
+                key={item.question}
+                className="rounded-[1.35rem] border border-line/70 bg-white/5 p-5"
+              >
+                <h2 className="text-lg font-semibold text-foreground">{item.question}</h2>
+                <p className="mt-3 text-sm leading-7 text-muted">{item.answer}</p>
+              </article>
+            ))}
           </div>
         </section>
       </PageShell>

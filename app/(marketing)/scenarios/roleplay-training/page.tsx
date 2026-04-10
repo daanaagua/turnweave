@@ -2,7 +2,13 @@ import Link from "next/link";
 import { ArrowRight, GraduationCap, Speech, WandSparkles } from "lucide-react";
 import { PageShell } from "@/components/marketing/page-shell";
 import { SectionHeading } from "@/components/marketing/section-heading";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+  buildPageMetadata,
+  buildSoftwareApplicationSchema,
+} from "@/lib/seo";
 import { roleplayTrainingScenario, roleplayTrainingSections } from "@/content/scenarios/roleplay-training";
 
 export const metadata = buildPageMetadata({
@@ -12,9 +18,36 @@ export const metadata = buildPageMetadata({
   keywords: ["roleplay training", "sales practice", "support training", "voice practice"],
 });
 
+const roleplayFaqs = [
+  {
+    question: "What are roleplay training scenes?",
+    answer:
+      "They are repeatable conversational scenarios used for coaching, rehearsal, and assessment across sales, support, interviews, and language practice.",
+  },
+  {
+    question: "Who benefits most from voice training scenes?",
+    answer:
+      "Teams that learn through repetition benefit most, especially when they need practice with objection handling, escalation, fluency, or difficult live conversations.",
+  },
+] as const;
+
 export default function RoleplayTrainingPage() {
   return (
     <PageShell className="py-10 md:py-14">
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: roleplayTrainingScenario.title, path: "/scenarios/roleplay-training" },
+          ]),
+          buildSoftwareApplicationSchema({
+            name: `${roleplayTrainingScenario.title} | Turnweave`,
+            description: roleplayTrainingScenario.summary,
+            path: "/scenarios/roleplay-training",
+          }),
+          buildFaqSchema([...roleplayFaqs]),
+        ]}
+      />
       <section className="section-shell rounded-[2rem] px-6 py-10 md:px-10 md:py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
           <div className="max-w-3xl">
@@ -102,6 +135,22 @@ export default function RoleplayTrainingPage() {
             <ArrowRight className="size-4" />
           </Link>
         </article>
+      </section>
+
+      <section className="mt-16">
+        <SectionHeading
+          eyebrow="FAQ"
+          title="Training buyers usually want the use case translated into plain English."
+          description="A direct FAQ makes the scenario easier to quote, cite, and understand."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {roleplayFaqs.map((item) => (
+            <article key={item.question} className="section-shell rounded-[1.5rem] p-6">
+              <h2 className="text-lg font-semibold text-foreground">{item.question}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.answer}</p>
+            </article>
+          ))}
+        </div>
       </section>
     </PageShell>
   );

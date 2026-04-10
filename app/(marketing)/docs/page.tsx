@@ -2,19 +2,43 @@ import Link from "next/link";
 import { ArrowRight, BookOpenText, FileText, FolderOpen, Route } from "lucide-react";
 import { PageShell } from "@/components/marketing/page-shell";
 import { SectionHeading } from "@/components/marketing/section-heading";
-import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { buildBreadcrumbSchema, buildFaqSchema, buildPageMetadata } from "@/lib/seo";
 import { docsIndex } from "@/content/docs";
 
 export const metadata = buildPageMetadata({
-  title: "Docs",
+  title: "AI Voice Agent Docs",
   description:
-    "Turnweave docs shell with product framing, scenario routes, and a platform-ready information structure.",
+    "Read Turnweave docs for AI website agents, training scenes, and model-specific explainers such as Seeduplex.",
   path: "/docs",
+  keywords: ["ai voice agent docs", "seeduplex explainer", "voice product docs"],
 });
+
+const docsFaqs = [
+  {
+    question: "What do the Turnweave docs cover?",
+    answer:
+      "The docs explain the product model, scenario routes, pricing context, and model-specific explainers that help visitors understand the category.",
+  },
+  {
+    question: "Why include model explainers like Seeduplex?",
+    answer:
+      "They capture high-intent search traffic, clarify terminology, and connect model awareness to concrete product workflows.",
+  },
+] as const;
 
 export default function DocsPage() {
   return (
     <PageShell className="py-10 md:py-14">
+      <JsonLd
+        data={[
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Docs", path: "/docs" },
+          ]),
+          buildFaqSchema([...docsFaqs]),
+        ]}
+      />
       <section className="section-shell rounded-[2rem] px-6 py-10 md:px-10 md:py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.84fr] lg:items-end">
           <div className="max-w-3xl">
@@ -91,6 +115,15 @@ export default function DocsPage() {
             exists.
           </p>
         </article>
+      </section>
+
+      <section className="mt-16 grid gap-4 md:grid-cols-2">
+        {docsFaqs.map((item) => (
+          <article key={item.question} className="section-shell rounded-[1.5rem] p-6">
+            <h2 className="text-lg font-semibold text-foreground">{item.question}</h2>
+            <p className="mt-3 text-sm leading-7 text-muted">{item.answer}</p>
+          </article>
+        ))}
       </section>
     </PageShell>
   );
